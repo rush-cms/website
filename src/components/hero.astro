@@ -1,0 +1,102 @@
+---
+import Container from "./ui/container.astro";
+import Badge from "./ui/badge.astro";
+import Button from "./ui/button.astro";
+import CodeWindow from "./code-window.astro";
+---
+
+<section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+    <div
+        class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-7xl pointer-events-none"
+    >
+        <div
+            class="absolute top-20 left-1/4 w-72 h-72 bg-brand-yellow/10 rounded-full blur-[100px] opacity-30"
+        >
+        </div>
+        <div
+            class="absolute top-40 right-1/4 w-96 h-96 bg-brand-yellow/5 rounded-full blur-[120px] opacity-20"
+        >
+        </div>
+    </div>
+
+    <Container class="relative z-10">
+        <div class="flex flex-col items-center text-center">
+            <div class="mb-8 animate-fade-in-up" style="animation-delay: 0.1s;">
+                <Badge
+                    class="border-brand-yellow/20 text-brand-yellow bg-brand-yellow/10"
+                >
+                    Headless CMS
+                </Badge>
+            </div>
+
+            <h1
+                class="max-w-4xl mx-auto text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight mb-8 animate-fade-in-up"
+                style="animation-delay: 0.2s;"
+            >
+                Backend poderoso para <br class="hidden sm:block" />
+                <span class="text-brand-yellow">
+                    sites de alta performance
+                </span>
+            </h1>
+
+            <p
+                class="max-w-2xl mx-auto text-lg sm:text-xl text-brand-muted mb-10 leading-relaxed animate-fade-in-up"
+                style="animation-delay: 0.3s;"
+            >
+                Rush CMS é uma plataforma headless desenvolvida para entregar
+                conteúdo com velocidade, segurança e controle total. Sem vendor
+                lock-in. Sem surpresas.
+            </p>
+
+            <div
+                class="flex flex-col sm:flex-row items-center gap-4 mb-20 animate-fade-in-up"
+                style="animation-delay: 0.4s;"
+            >
+                <Button
+                    href="#servicos"
+                    variant="primary"
+                    size="lg"
+                    class="w-full sm:w-auto"
+                >
+                    Conhecer os Benefícios
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="w-5 h-5 ml-2"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        ><path d="M5 12h14M12 5l7 7-7 7"></path></svg
+                    >
+                </Button>
+            </div>
+
+            <div
+                class="w-full animate-fade-in-up"
+                style="animation-delay: 0.5s;"
+            >
+                <CodeWindow />
+            </div>
+        </div>
+    </Container>
+</section>
+
+<style>
+    @keyframes fade-in-up {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .animate-fade-in-up {
+        animation: fade-in-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        opacity: 0;
+    }
+</style>

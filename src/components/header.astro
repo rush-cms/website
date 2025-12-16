@@ -1,0 +1,43 @@
+---
+import Container from "./ui/container.astro";
+import Badge from "./ui/badge.astro";
+
+interface Props {
+    currentVersion?: string;
+}
+
+const { currentVersion = "beta 0.5" } = Astro.props;
+---
+
+<header class="absolute top-0 left-0 w-full z-10 py-6">
+    <Container>
+        <div class="flex items-center justify-between">
+            <a
+                href="/"
+                class="flex items-center gap-2 group"
+                aria-label="Rush CMS Home"
+            >
+                <img
+                    src="/favicon.svg"
+                    alt="Rush CMS Logo"
+                    class="w-8 h-8 group-hover:scale-105 transition-transform duration-200"
+                />
+                <span class="font-bold text-xl tracking-tight text-white"
+                    >Rush <span class="text-brand-muted font-normal">CMS</span
+                    ></span
+                >
+            </a>
+
+            <div class="flex items-center gap-4">
+                <Badge
+                    class="hidden sm:inline-flex border-green-500/30 text-green-400 bg-green-500/10"
+                >
+                    <span
+                        class="w-1.5 h-1.5 rounded-full bg-green-400 mr-2 animate-pulse"
+                    ></span>
+                    {currentVersion}
+                </Badge>
+            </div>
+        </div>
+    </Container>
+</header>

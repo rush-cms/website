@@ -1,1 +1,65 @@
 @import "tailwindcss";
+@import "@fontsource/poppins";
+
+@theme {
+    --color-brand-yellow: #f7ff00;
+    --color-brand-dark: #050505;
+    --color-brand-surface: #121212;
+    --color-brand-text: #ffffff;
+    --color-brand-muted: #a1a1aa;
+    --color-brand-yellow-hover: #dce300;
+    --color-surface-hover: #333333;
+    --color-footer-bg: #161616;
+    --color-code-bg: #111111;
+    --color-mac-red: #ff5f56;
+    --color-mac-yellow: #ffbd2e;
+    --color-mac-green: #27c93f;
+
+    --font-sans: "Poppins", ui-sans-serif, system-ui, sans-serif;
+}
+
+body {
+    background-color: var(--color-brand-dark);
+    color: var(--color-brand-text);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+@utility bg-grid {
+    background-image:
+        linear-gradient(rgba(247, 255, 0, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(247, 255, 0, 0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.5;
+}
+
+@utility bg-glow {
+    background: radial-gradient(ellipse at center,
+            rgba(247, 255, 0, 0.15) 0%,
+            transparent 60%);
+    width: 800px;
+    height: 600px;
+    position: fixed;
+    top: -200px;
+    left: 50%;
+    transform: translateX(-50%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    letter-spacing: -0.02em;
+}

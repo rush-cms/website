@@ -1,0 +1,42 @@
+---
+import Container from "./ui/container.astro";
+
+const technologies = [
+    { name: "Laravel 12", slug: "laravel", color: "#FF2D20" },
+    { name: "React SDK", slug: "react", color: "#61DAFB" },
+    { name: "PostgreSQL", slug: "postgresql", color: "#336791" },
+    { name: "Redis", slug: "redis", color: "#DC382D" },
+    { name: "Cloudflare", slug: "cloudflare", color: "#F38020" },
+    { name: "TypeScript", slug: "typescript", color: "#3178C6" },
+];
+---
+
+<section class="py-20 text-center">
+    <Container>
+        <p
+            class="text-xs font-mono text-brand-muted uppercase tracking-widest mb-10"
+        >
+            Construído com
+        </p>
+
+        <div class="flex flex-wrap justify-center items-center gap-4 sm:gap-6">
+            {
+                technologies.map((tech) => (
+                    <div class="flex items-center gap-3 px-5 py-3 rounded-full bg-white/[0.03] border border-white/5 hover:border-white/10 transition-colors duration-300 group">
+                        <div class="w-6 h-6 flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
+                            <img
+                                src={`https://cdn.simpleicons.org/${tech.slug}/${tech.color.replace("#", "")}`}
+                                alt={`${tech.name} logo`}
+                                class="w-full h-full"
+                                loading="lazy"
+                            />
+                        </div>
+                        <span class="text-sm font-medium text-gray-300">
+                            {tech.name}
+                        </span>
+                    </div>
+                ))
+            }
+        </div>
+    </Container>
+</section>

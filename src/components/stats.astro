@@ -1,0 +1,15 @@
+---
+import Container from "./ui/container.astro";
+import StatItem from "./ui/stat-item.astro";
+---
+
+<section class="py-12 border-y border-white/5 bg-white/[0.02]">
+    <Container>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+            <StatItem value="534" label="Testes automatizados" />
+            <StatItem value="<50ms" label="Tempo de resposta API" />
+            <StatItem value="99.9%" label="Uptime garantido" />
+            <StatItem value="100%" label="Seus dados, seu controle" />
+        </div>
+    </Container>
+</section>
