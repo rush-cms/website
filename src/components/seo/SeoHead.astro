@@ -1,0 +1,78 @@
+---
+interface Props {
+    title: string;
+    description: string;
+    image?: string;
+    type?: "website" | "article";
+}
+
+const {
+    title,
+    description,
+    image = "/banner.png",
+    type = "website",
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const socialImageURL = new URL(image, Astro.url);
+---
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="manifest" href="/site.webmanifest" />
+<link rel="sitemap" href="/sitemap-index.xml" />
+<meta name="generator" content={Astro.generator} />
+
+<link rel="canonical" href={canonicalURL} />
+
+<title>{title}</title>
+<meta name="title" content={title} />
+<meta name="description" content={description} />
+<meta name="theme-color" content="#1d1d1d" />
+
+<meta property="og:type" content={type} />
+<meta property="og:url" content={Astro.url} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={socialImageURL} />
+<meta property="og:site_name" content="Rush CMS" />
+<meta property="og:locale" content="pt_BR" />
+
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content={Astro.url} />
+<meta property="twitter:title" content={title} />
+<meta property="twitter:description" content={description} />
+<meta property="twitter:image" content={socialImageURL} />
+
+<script type="application/ld+json" is:inline>
+    {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "SoftwareApplication",
+                "name": "Rush CMS",
+                "applicationCategory": "ContentManagementSystem",
+                "operatingSystem": "Web",
+                "offers": {
+                    "@type": "Offer",
+                    "price": "0",
+                    "priceCurrency": "BRL",
+                    "availability": "https://schema.org/PreOrder"
+                },
+                "description": "Backend poderoso para sites de alta performance. Gerencie conteúdo com velocidade e flexibilidade."
+            },
+            {
+                "@type": "Organization",
+                "name": "Rush CMS",
+                "url": "https://rushcms.com",
+                "logo": "https://rushcms.com/favicon.svg",
+                "contactPoint": {
+                    "@type": "ContactPoint",
+                    "contactType": "customer support",
+                    "url": "https://rafhael.com.br"
+                }
+            }
+        ]
+    }
+</script>

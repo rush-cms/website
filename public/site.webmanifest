@@ -1,0 +1,16 @@
+{
+    "name": "Rush CMS",
+    "short_name": "RushCMS",
+    "description": "Backend poderoso para sites de alta performance.",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#050505",
+    "theme_color": "#1d1d1d",
+    "icons": [
+        {
+            "src": "/favicon.svg",
+            "sizes": "any",
+            "type": "image/svg+xml"
+        }
+    ]
+}
