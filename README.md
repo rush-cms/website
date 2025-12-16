@@ -2,6 +2,8 @@
 
 > High-performance Headless CMS. Fast, secure, no vendor lock-in.
 
+<img src=".github/pagespeed-print.png" alt="PageSpeed Insights Score" style="border-radius: 8px;" />
+
 ---
 
 ## What the heck is Rush CMS?
