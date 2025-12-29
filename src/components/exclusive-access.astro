@@ -2,6 +2,14 @@
 import Container from "./ui/container.astro";
 import Badge from "./ui/badge.astro";
 import Button from "./ui/button.astro";
+import { useTranslations, getLangFromUrl, type Locale } from "../i18n/utils";
+
+interface Props {
+    lang?: Locale;
+}
+
+const lang = Astro.props.lang || getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <section class="py-20 lg:py-32">
@@ -24,26 +32,24 @@ import Button from "./ui/button.astro";
                 <Badge
                     class="mb-8 border-yellow-500/30 text-yellow-400 bg-yellow-500/10"
                 >
-                    Plataforma Fechada
+                    {t.exclusiveAccess.badge}
                 </Badge>
 
                 <h2
                     class="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 text-brand-yellow tracking-tight"
                 >
-                    Disponível exclusivamente para clientes selecionados
+                    {t.exclusiveAccess.title}
                 </h2>
 
                 <p class="text-brand-muted text-lg mb-10 leading-relaxed">
-                    Rush CMS não é vendido separadamente. Está incluso nos
-                    serviços de criação de sites de alta performance oferecidos
-                    por Rafhael Marsigli.
+                    {t.exclusiveAccess.description}
                 </p>
 
                 <Button
                     href="https://rafhael.com.br"
                     class="bg-white text-brand-dark hover:bg-gray-200"
                 >
-                    Ver serviços disponíveis
+                    {t.exclusiveAccess.cta}
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         class="w-4 h-4 ml-2"
@@ -58,7 +64,7 @@ import Button from "./ui/button.astro";
                 </Button>
 
                 <p class="mt-8 text-xs text-brand-muted">
-                    Interessado na tecnologia? Entre em contato para saber mais.
+                    {t.exclusiveAccess.footer}
                 </p>
             </div>
         </div>

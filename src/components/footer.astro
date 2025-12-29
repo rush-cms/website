@@ -1,5 +1,13 @@
 ---
 import Container from "./ui/container.astro";
+import { useTranslations, getLangFromUrl, type Locale } from "../i18n/utils";
+
+interface Props {
+    lang?: Locale;
+}
+
+const lang = Astro.props.lang || getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <footer class="py-12 border-t border-white/5 bg-footer-bg">
@@ -24,7 +32,7 @@ import Container from "./ui/container.astro";
                     rel="noopener noreferrer"
                     class="flex items-center gap-2"
                 >
-                    Desenvolvido por
+                    {t.footer.developedBy}
                     <img
                         src="/rafhael-logo.svg"
                         alt="Rafhael Marsigli"

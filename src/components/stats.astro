@@ -1,15 +1,130 @@
 ---
 import Container from "./ui/container.astro";
-import StatItem from "./ui/stat-item.astro";
+import { icons, withSize } from "../config/icons";
+import { useTranslations, getLangFromUrl, type Locale } from "../i18n/utils";
+
+interface Props {
+    lang?: Locale;
+}
+
+const lang = Astro.props.lang || getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const stats = [
+    {
+        value: "20.4ms",
+        label: t.stats.avgResponse,
+        sublabel: t.stats.sublabels.avgResponse,
+    },
+    {
+        value: "49",
+        label: t.stats.throughput,
+        sublabel: t.stats.sublabels.throughput,
+    },
+    {
+        value: "80%",
+        label: t.stats.lessQueries,
+        sublabel: t.stats.sublabels.lessQueries,
+    },
+    {
+        value: "84%",
+        label: t.stats.faster,
+        sublabel: t.stats.sublabels.faster,
+    },
+];
+
+const badges = [
+    {
+        icon: withSize(icons.check, 16),
+        value: "600+",
+        label: t.stats.testsLabel,
+        color: "green",
+    },
+    {
+        icon: withSize(icons.checkShield, 16),
+        value: "Level 5",
+        label: t.stats.phpstanLabel,
+        color: "blue",
+    },
+    {
+        icon: withSize(icons.code, 16),
+        value: "Pint",
+        label: t.stats.pintLabel,
+        color: "purple",
+    },
+    {
+        icon: withSize(icons.chart, 16),
+        value: "32.6%",
+        label: t.stats.coverageLabel,
+        color: "yellow",
+    },
+];
 ---
 
-<section class="py-12 border-y border-white/5 bg-white/[0.02]">
+<section class="py-24 sm:py-32">
     <Container>
-        <dl class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
-            <StatItem value="534" label="Testes automatizados" />
-            <StatItem value="<50ms" label="Tempo de resposta API" />
-            <StatItem value="99.9%" label="Uptime garantido" />
-            <StatItem value="100%" label="Seus dados, seu controle" />
-        </dl>
+        <div class="text-center mb-16">
+            <h2
+                class="text-sm sm:text-base font-mono text-brand-muted uppercase tracking-widest mb-4"
+            >
+                {t.stats.performanceTitle}
+            </h2>
+            <p
+                class="text-3xl sm:text-4xl font-bold text-white max-w-2xl mx-auto"
+            >
+                {t.stats.metricsTitle}
+            </p>
+        </div>
+
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-16">
+            {
+                stats.map((stat) => (
+                    <div class="relative group p-6 sm:p-8 rounded-2xl bg-linear-to-b from-brand-surface to-transparent border border-white/5 hover:border-brand-yellow/20 transition-all duration-300">
+                        <div class="text-4xl sm:text-5xl lg:text-6xl font-bold text-brand-yellow font-mono tracking-tight mb-2">
+                            {stat.value}
+                        </div>
+                        <div class="text-sm sm:text-base text-white font-medium mb-1">
+                            {stat.label}
+                        </div>
+                        <div class="text-xs text-brand-muted">
+                            {stat.sublabel}
+                        </div>
+                    </div>
+                ))
+            }
+        </div>
+
+        <div class="text-center mb-8">
+            <h3
+                class="text-sm sm:text-base font-mono text-brand-muted uppercase tracking-widest"
+            >
+                {t.stats.codeQualityTitle}
+            </h3>
+        </div>
+
+        <div class="flex flex-wrap justify-center gap-3 sm:gap-4">
+            {
+                badges.map((badge) => (
+                    <div class="flex items-center gap-3 px-4 py-3 rounded-full bg-white/3 border border-white/5">
+                        <span
+                            class:list={[
+                                "flex items-center justify-center",
+                                badge.color === "green" && "text-green-400",
+                                badge.color === "blue" && "text-blue-400",
+                                badge.color === "purple" && "text-purple-400",
+                                badge.color === "yellow" && "text-brand-yellow",
+                            ]}
+                            set:html={badge.icon}
+                        />
+                        <span class="font-mono font-bold text-white">
+                            {badge.value}
+                        </span>
+                        <span class="text-brand-muted text-sm">
+                            {badge.label}
+                        </span>
+                    </div>
+                ))
+            }
+        </div>
     </Container>
 </section>
