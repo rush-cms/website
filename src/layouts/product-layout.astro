@@ -1,0 +1,199 @@
+---
+import Layout from "./layout.astro";
+import Header from "../components/header.astro";
+import Footer from "../components/footer.astro";
+import Container from "../components/ui/container.astro";
+import Badge from "../components/ui/badge.astro";
+import Button from "../components/ui/button.astro";
+import GlowEffect from "../components/ui/glow-effect.astro";
+import CopyCommand from "../components/ui/copy-command.astro";
+import FeatureCard from "../components/ui/feature-card.astro";
+import SectionHeading from "../components/ui/section-heading.astro";
+import { icons, withSize } from "../config/icons";
+import { useTranslations, getLangFromUrl, type Locale } from "../i18n/utils";
+
+interface Feature {
+    title: string;
+    description: string;
+    icon?: string;
+}
+
+interface Props {
+    title: string;
+    tagline: string;
+    description: string;
+    githubUrl: string;
+    docsUrl?: string;
+    npmPackage?: string;
+    icon?: string;
+    version?: string;
+    installCommand?: string;
+    features?: Feature[];
+    lang?: Locale;
+}
+
+const {
+    title,
+    tagline,
+    description,
+    githubUrl,
+    docsUrl,
+    npmPackage,
+    icon,
+    version,
+    installCommand,
+    features = [],
+} = Astro.props;
+
+const lang = Astro.props.lang || getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const pageTitle = `${title} - Rush CMS`;
+---
+
+<Layout title={pageTitle} description={tagline}>
+    <Header lang={lang} />
+
+    <main class="text-white overflow-hidden">
+        <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-24">
+            <GlowEffect />
+
+            <Container class="relative z-10">
+                <div
+                    class="flex flex-col items-center text-center max-w-3xl mx-auto"
+                >
+                    {
+                        icon && (
+                            <div class="w-20 h-20 rounded-2xl bg-brand-yellow/10 border border-brand-yellow/20 flex items-center justify-center mb-8">
+                                <span
+                                    class="text-brand-yellow"
+                                    set:html={icon}
+                                />
+                            </div>
+                        )
+                    }
+
+                    <h1
+                        class="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight mb-4"
+                    >
+                        {title}
+                    </h1>
+
+                    <p
+                        class="text-lg xl:text-xl text-brand-yellow font-medium mb-6"
+                    >
+                        {tagline}
+                    </p>
+
+                    <p
+                        class="text-lg xl:text-xl text-brand-muted leading-relaxed mb-10"
+                    >
+                        {description}
+                    </p>
+
+                    <div
+                        class="flex flex-wrap justify-center items-center gap-4 mb-10"
+                    >
+                        <Button
+                            href={githubUrl}
+                            variant="primary"
+                            class="gap-2"
+                        >
+                            <span class="w-5 h-5" set:html={icons.github} />
+                            {t.productLayout.viewOnGithub}
+                        </Button>
+
+                        {
+                            docsUrl && (
+                                <Button href={docsUrl} variant="secondary">
+                                    {t.productLayout.documentation}
+                                </Button>
+                            )
+                        }
+
+                        {
+                            npmPackage && (
+                                <a
+                                    href={`https://www.npmjs.com/package/${npmPackage}`}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="flex items-center gap-2 px-5 py-3 text-sm text-brand-muted hover:text-white border border-white/10 hover:border-white/20 rounded-lg transition-all duration-200"
+                                >
+                                    <span
+                                        class="w-5 h-5"
+                                        set:html={icons.npm}
+                                    />
+                                    {npmPackage}
+                                </a>
+                            )
+                        }
+
+                        {
+                            version && (
+                                <Badge class="border-brand-yellow/30 text-brand-yellow bg-brand-yellow/10">
+                                    v{version}
+                                </Badge>
+                            )
+                        }
+                    </div>
+
+                    {
+                        installCommand && (
+                            <CopyCommand
+                                command={installCommand}
+                                class="w-full max-w-md"
+                            />
+                        )
+                    }
+                </div>
+            </Container>
+        </section>
+
+        {
+            features.length > 0 && (
+                <section class="py-20 border-t border-white/5">
+                    <Container>
+                        <SectionHeading>
+                            {t.productLayout.resources}
+                        </SectionHeading>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            {features.map((feature) => (
+                                <FeatureCard
+                                    title={feature.title}
+                                    description={feature.description}
+                                    icon={feature.icon}
+                                />
+                            ))}
+                        </div>
+                    </Container>
+                </section>
+            )
+        }
+
+        <slot />
+
+        <section class="py-20 border-t border-white/5">
+            <Container>
+                <div class="text-center">
+                    <p class="text-brand-muted mb-6">
+                        {t.productLayout.bugOrSuggestion}
+                    </p>
+                    <a
+                        href={`${githubUrl}/issues`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="inline-flex items-center gap-2 text-sm text-brand-yellow hover:underline"
+                    >
+                        {t.productLayout.openIssue}
+                        <span
+                            class="w-4 h-4"
+                            set:html={withSize(icons.externalLink, 16)}
+                        />
+                    </a>
+                </div>
+            </Container>
+        </section>
+    </main>
+
+    <Footer lang={lang} />
+</Layout>

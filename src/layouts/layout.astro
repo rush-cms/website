@@ -11,12 +11,18 @@ const {
 
 import SeoHead from "../components/seo/seo-head.astro";
 import "../styles/app.css";
+import { getLangFromUrl } from "../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
 ---
 
 <!doctype html>
-<html lang="pt-BR" class="scroll-smooth">
+<html lang={lang} class="scroll-smooth">
     <head>
         <SeoHead title={title} description={description} />
+        <script>
+            import "../scripts/detect-lang";
+        </script>
     </head>
     <body
         class="antialiased bg-brand-dark text-brand-text overflow-x-hidden selection:bg-brand-yellow selection:text-brand-dark relative"

@@ -1,0 +1,158 @@
+---
+import ProductLayout from "../layouts/product-layout.astro";
+import Container from "../components/ui/container.astro";
+import SectionHeading from "../components/ui/section-heading.astro";
+import { icons, withSize } from "../config/icons";
+
+const starters = [
+    {
+        name: "Next.js Starter",
+        slug: "nextjs",
+        description:
+            "Template completo com Next.js, App Router, TypeScript e Rush SDK já configurado.",
+        github: "https://github.com/rush-cms/nextjs-starter",
+        status: "available",
+        features: ["App Router", "TypeScript", "Tailwind CSS", "Rush SDK"],
+        icon: withSize(icons.nextjs, 24),
+    },
+    {
+        name: "Astro Starter",
+        slug: "astro",
+        description:
+            "Template estático ultra-rápido com Astro 5, Content Collections e Rush SDK.",
+        github: "#",
+        status: "coming-soon",
+        features: [
+            "Astro 5",
+            "Content Collections",
+            "Tailwind CSS",
+            "Rush SDK",
+        ],
+        icon: withSize(icons.astro, 24),
+    },
+];
+
+const features = [
+    {
+        title: "Pronto para Produção",
+        description:
+            "Configurações de build, SEO, e performance já otimizadas. É só clonar e começar.",
+        icon: withSize(icons.check, 20),
+    },
+    {
+        title: "Rush SDK Integrado",
+        description:
+            "SDK já instalado e configurado. Basta adicionar suas credenciais e começar a consumir conteúdo.",
+        icon: withSize(icons.terminal, 20),
+    },
+    {
+        title: "TypeScript First",
+        description:
+            "Tipagem completa do Rush SDK. Autocomplete e validação em tempo de desenvolvimento.",
+        icon: withSize(icons.code, 20),
+    },
+    {
+        title: "Tailwind CSS",
+        description:
+            "Estilização pronta com Tailwind. Componentes base inclusos para acelerar o desenvolvimento.",
+        icon: withSize(icons.palette, 20),
+    },
+    {
+        title: "SEO Otimizado",
+        description:
+            "Meta tags, Open Graph, JSON-LD e sitemap já configurados. Seu site pronto para indexação.",
+        icon: withSize(icons.chart, 20),
+    },
+    {
+        title: "Componentes Base",
+        description:
+            "Header, Footer, Cards e outros componentes reutilizáveis para acelerar o desenvolvimento.",
+        icon: withSize(icons.blocks, 20),
+    },
+];
+---
+
+<ProductLayout
+    title="Starter Kits"
+    tagline="Templates prontos para produção"
+    description="Inicie seu projeto em minutos com templates pré-configurados. Rush SDK já integrado, TypeScript, Tailwind CSS e melhores práticas de SEO e performance."
+    githubUrl="https://github.com/rush-cms"
+    icon={withSize(icons.rocket, 40)}
+    features={features}
+>
+    <section class="py-16 border-t border-white/5">
+        <Container>
+            <SectionHeading>Templates Disponíveis</SectionHeading>
+
+            <div
+                class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto"
+            >
+                {
+                    starters.map((starter) => (
+                        <div
+                            class={`group relative p-8 rounded-3xl bg-brand-surface border transition-all duration-500 overflow-hidden ${
+                                starter.status === "available"
+                                    ? "border-white/5 hover:border-brand-yellow/30"
+                                    : "border-white/5 opacity-60"
+                            }`}
+                        >
+                            <div class="absolute top-0 right-0 w-48 h-48 bg-brand-yellow/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:bg-brand-yellow/10 transition-colors duration-500" />
+
+                            <div class="relative z-10">
+                                <div class="flex items-start justify-between mb-6">
+                                    <div
+                                        class="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white"
+                                        set:html={starter.icon}
+                                    />
+
+                                    {starter.status === "coming-soon" && (
+                                        <span class="px-3 py-1 text-xs font-medium rounded-full bg-brand-yellow/10 text-brand-yellow border border-brand-yellow/20">
+                                            Em breve
+                                        </span>
+                                    )}
+                                </div>
+
+                                <h3 class="text-xl font-bold text-white mb-2 group-hover:text-brand-yellow transition-colors duration-200">
+                                    {starter.name}
+                                </h3>
+
+                                <p class="text-brand-muted text-sm mb-6">
+                                    {starter.description}
+                                </p>
+
+                                <div class="flex flex-wrap gap-2 mb-6">
+                                    {starter.features.map((feature) => (
+                                        <span class="px-2 py-1 text-xs font-medium rounded bg-white/5 text-brand-muted">
+                                            {feature}
+                                        </span>
+                                    ))}
+                                </div>
+
+                                {starter.status === "available" ? (
+                                    <a
+                                        href={starter.github}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        class="inline-flex items-center gap-2 text-sm font-medium text-brand-yellow hover:underline"
+                                    >
+                                        Ver no GitHub
+                                        <span
+                                            set:html={withSize(
+                                                icons.arrowRight,
+                                                16,
+                                            )}
+                                        />
+                                    </a>
+                                ) : (
+                                    <span class="text-sm text-brand-muted">
+                                        Disponível em breve
+                                    </span>
+                                )}
+                            </div>
+                        </div>
+                    ))
+                }
+            </div>
+        </Container>
+    </section>
+</ProductLayout>

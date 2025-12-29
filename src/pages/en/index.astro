@@ -1,0 +1,28 @@
+---
+import Layout from "../../layouts/layout.astro";
+import Header from "../../components/header.astro";
+import Hero from "../../components/hero.astro";
+import Stats from "../../components/stats.astro";
+import Features from "../../components/features.astro";
+import TechStack from "../../components/tech-stack.astro";
+import Ecosystem from "../../components/ecosystem.astro";
+import ExclusiveAccess from "../../components/exclusive-access.astro";
+import Footer from "../../components/footer.astro";
+import { useTranslations } from "../../i18n/utils";
+
+const lang = "en" as const;
+const t = useTranslations(lang);
+---
+
+<Layout title="Rush CMS - Powerful backend for high-performance websites">
+    <Header lang={lang} />
+    <main class="text-white overflow-hidden">
+        <Hero lang={lang} />
+        <Stats lang={lang} />
+        <Features lang={lang} />
+        <TechStack lang={lang} />
+        <Ecosystem lang={lang} />
+        <ExclusiveAccess lang={lang} />
+    </main>
+    <Footer lang={lang} />
+</Layout>

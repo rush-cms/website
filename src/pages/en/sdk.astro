@@ -1,0 +1,55 @@
+---
+import ProductLayout from "../../layouts/product-layout.astro";
+import { icons, withSize } from "../../config/icons";
+import { useTranslations } from "../../i18n/utils";
+
+const lang = "en" as const;
+const t = useTranslations(lang);
+
+const features = [
+    {
+        title: t.sdk.features.typeSafe.title,
+        description: t.sdk.features.typeSafe.description,
+        icon: withSize(icons.code, 20),
+    },
+    {
+        title: t.sdk.features.reactHooks.title,
+        description: t.sdk.features.reactHooks.description,
+        icon: withSize(icons.terminal, 20),
+    },
+    {
+        title: t.sdk.features.cache.title,
+        description: t.sdk.features.cache.description,
+        icon: withSize(icons.blocks, 20),
+    },
+    {
+        title: t.sdk.features.ssr.title,
+        description: t.sdk.features.ssr.description,
+        icon: withSize(icons.rocket, 20),
+    },
+    {
+        title: t.sdk.features.auth.title,
+        description: t.sdk.features.auth.description,
+        icon: withSize(icons.lock, 20),
+    },
+    {
+        title: t.sdk.features.fast.title,
+        description: t.sdk.features.fast.description,
+        icon: withSize(icons.zap, 20),
+    },
+];
+---
+
+<ProductLayout
+    title={t.sdk.title}
+    tagline={t.sdk.tagline}
+    description={t.sdk.description}
+    githubUrl="https://github.com/rush-cms/sdk"
+    docsUrl="https://github.com/rush-cms/docs"
+    npmPackage="@rushcms/sdk"
+    version="0.1.0"
+    installCommand="pnpm add @rushcms/sdk"
+    icon={withSize(icons.terminal, 40)}
+    features={features}
+    lang={lang}
+/>

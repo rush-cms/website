@@ -1,0 +1,52 @@
+---
+import ProductLayout from "../layouts/product-layout.astro";
+import { icons, withSize } from "../config/icons";
+
+const features = [
+    {
+        title: "Relatórios Lighthouse",
+        description:
+            "Gera relatórios completos de performance usando Google Lighthouse/PageSpeed Insights.",
+        icon: withSize(icons.chart, 20),
+    },
+    {
+        title: "PDF de Alta Fidelidade",
+        description:
+            "Relatórios exportados em PDF profissional, prontos para enviar ao cliente.",
+        icon: withSize(icons.file, 20),
+    },
+    {
+        title: "Whitelabel",
+        description:
+            "Personalize com sua marca. Logo, cores e informações de contato customizáveis.",
+        icon: withSize(icons.palette, 20),
+    },
+    {
+        title: "100% Assíncrono",
+        description:
+            "Processa relatórios em background. Receba via webhook quando estiver pronto.",
+        icon: withSize(icons.spinner, 20),
+    },
+    {
+        title: "Webhooks",
+        description:
+            "Integre com seu sistema. Receba notificações quando o relatório for gerado.",
+        icon: withSize(icons.webhook, 20),
+    },
+    {
+        title: "API RESTful",
+        description:
+            "API simples e documentada. Integre facilmente com qualquer stack.",
+        icon: withSize(icons.api, 20),
+    },
+];
+---
+
+<ProductLayout
+    title="Rush Audits"
+    tagline="Relatórios Lighthouse em PDF, whitelabel"
+    description="Microserviço standalone e headless para geração de relatórios de performance (Lighthouse/PageSpeed) em PDF. 100% assíncrono, orientado a webhooks, e pronto para whitelabel."
+    githubUrl="https://github.com/rush-cms/audits"
+    icon={withSize(icons.chart, 40)}
+    features={features}
+/>

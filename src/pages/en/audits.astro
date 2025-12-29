@@ -1,0 +1,51 @@
+---
+import ProductLayout from "../../layouts/product-layout.astro";
+import { icons, withSize } from "../../config/icons";
+import { useTranslations } from "../../i18n/utils";
+
+const lang = "en" as const;
+const t = useTranslations(lang);
+
+const features = [
+    {
+        title: t.audits.features.lighthouse.title,
+        description: t.audits.features.lighthouse.description,
+        icon: withSize(icons.chart, 20),
+    },
+    {
+        title: t.audits.features.pdf.title,
+        description: t.audits.features.pdf.description,
+        icon: withSize(icons.code, 20),
+    },
+    {
+        title: t.audits.features.whitelabel.title,
+        description: t.audits.features.whitelabel.description,
+        icon: withSize(icons.palette, 20),
+    },
+    {
+        title: t.audits.features.async.title,
+        description: t.audits.features.async.description,
+        icon: withSize(icons.zap, 20),
+    },
+    {
+        title: t.audits.features.webhooks.title,
+        description: t.audits.features.webhooks.description,
+        icon: withSize(icons.webhook, 20),
+    },
+    {
+        title: t.audits.features.api.title,
+        description: t.audits.features.api.description,
+        icon: withSize(icons.terminal, 20),
+    },
+];
+---
+
+<ProductLayout
+    title={t.audits.title}
+    tagline={t.audits.tagline}
+    description={t.audits.description}
+    githubUrl="https://github.com/rush-cms/audits"
+    icon={withSize(icons.chart, 40)}
+    features={features}
+    lang={lang}
+/>

@@ -1,0 +1,54 @@
+---
+import ProductLayout from "../layouts/product-layout.astro";
+import { icons, withSize } from "../config/icons";
+
+const features = [
+    {
+        title: "Type-safe",
+        description:
+            "SDK totalmente tipado com TypeScript. Autocomplete e validação em tempo de desenvolvimento.",
+        icon: withSize(icons.terminal, 20),
+    },
+    {
+        title: "React Hooks",
+        description:
+            "Hooks prontos para usar: useCollection, useEntry, useMedia e mais.",
+        icon: withSize(icons.info, 20),
+    },
+    {
+        title: "Cache Inteligente",
+        description:
+            "Sistema de cache integrado com invalidação automática. Menos requisições, mais performance.",
+        icon: withSize(icons.spinner, 20),
+    },
+    {
+        title: "SSR Ready",
+        description:
+            "Funciona perfeitamente com Next.js, Astro, Remix e outros frameworks SSR.",
+        icon: withSize(icons.monitor, 20),
+    },
+    {
+        title: "Autenticação",
+        description:
+            "Suporte a múltiplos métodos de autenticação: API Token, Bearer, e mais.",
+        icon: withSize(icons.lock, 20),
+    },
+    {
+        title: "Leve e Rápido",
+        description:
+            "Bundle mínimo, sem dependências pesadas. Ideal para sites que precisam de performance.",
+        icon: withSize(icons.bolt, 20),
+    },
+];
+---
+
+<ProductLayout
+    title="Rush SDK"
+    tagline="Integre Rush CMS em minutos"
+    description="SDK oficial para integração com Rush CMS. Type-safe, com React hooks prontos para uso e cache inteligente. Funciona com Next.js, Astro, Remix e qualquer framework JavaScript."
+    githubUrl="https://github.com/rush-cms/sdk"
+    npmPackage="@rushcms/sdk"
+    installCommand="npm install @rushcms/sdk"
+    icon={withSize(icons.terminal, 40)}
+    features={features}
+/>
