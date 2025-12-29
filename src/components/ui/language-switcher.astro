@@ -1,0 +1,59 @@
+---
+import { icons, withSize } from "../../config/icons";
+import {
+    getLocalizedPath,
+    getCurrentPath,
+    type Locale,
+} from "../../i18n/utils";
+
+interface Props {
+    lang: Locale;
+}
+
+const { lang } = Astro.props;
+const currentPath = getCurrentPath(Astro.url);
+const ptPath = getLocalizedPath(currentPath, "pt-BR");
+const enPath = getLocalizedPath(currentPath, "en");
+---
+
+<div class="relative group">
+    <button
+        class="flex items-center gap-1.5 p-2 text-brand-muted hover:text-white transition-colors duration-200"
+        aria-label="Mudar idioma"
+    >
+        <span class="w-5 h-5" set:html={withSize(icons.globe, 20)} />
+        <span class="text-sm font-medium uppercase"
+            >{lang === "pt-BR" ? "PT" : "EN"}</span
+        >
+        <span class="w-4 h-4" set:html={withSize(icons.chevronDown, 16)} />
+    </button>
+
+    <div
+        class="absolute right-0 top-full mt-1 py-2 bg-brand-surface border border-white/10 rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 min-w-[120px] z-50"
+    >
+        <a
+            href={ptPath}
+            class:list={[
+                "flex items-center gap-2 px-4 py-2 text-sm transition-colors duration-200",
+                lang === "pt-BR"
+                    ? "text-brand-yellow bg-brand-yellow/10"
+                    : "text-brand-muted hover:text-white hover:bg-white/5",
+            ]}
+        >
+            <span class="text-base">🇧🇷</span>
+            Português
+        </a>
+        <a
+            href={enPath}
+            class:list={[
+                "flex items-center gap-2 px-4 py-2 text-sm transition-colors duration-200",
+                lang === "en"
+                    ? "text-brand-yellow bg-brand-yellow/10"
+                    : "text-brand-muted hover:text-white hover:bg-white/5",
+            ]}
+        >
+            <span class="text-base">🇺🇸</span>
+            English
+        </a>
+    </div>
+</div>

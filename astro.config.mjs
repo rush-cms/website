@@ -1,14 +1,22 @@
 // @ts-check
-import { defineConfig } from 'astro/config';
-import tailwindcss from "@tailwindcss/vite";
+import { defineConfig } from 'astro/config'
+import tailwindcss from "@tailwindcss/vite"
 
-import sitemap from "@astrojs/sitemap";
+import sitemap from "@astrojs/sitemap"
 
 // https://astro.build/config
 export default defineConfig({
   site: 'https://rushcms.com',
   experimental: {
     svgo: true,
+  },
+
+  i18n: {
+    defaultLocale: "pt-BR",
+    locales: ["pt-BR", "en"],
+    routing: {
+      prefixDefaultLocale: false,
+    },
   },
 
   vite: {
@@ -19,4 +27,4 @@ export default defineConfig({
   build: {
     inlineStylesheets: 'always',
   },
-});
+})

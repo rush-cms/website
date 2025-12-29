@@ -1,0 +1,77 @@
+---
+interface Props {
+    command: string;
+    class?: string;
+}
+
+const { command, class: className = "" } = Astro.props;
+---
+
+<div
+    class:list={[
+        "p-4 rounded-xl bg-brand-surface border border-white/5",
+        className,
+    ]}
+>
+    <div class="flex items-center justify-between gap-4">
+        <code class="text-sm text-brand-muted font-mono">
+            <span class="text-brand-yellow">$</span>{" "}
+            {command}
+        </code>
+        <button
+            type="button"
+            class="shrink-0 p-2 text-brand-muted hover:text-white transition-colors duration-200 copy-button"
+            data-copy={command}
+            aria-label="Copiar comando"
+        >
+            <svg
+                class="w-4 h-4 copy-icon"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+            >
+                <rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect>
+                <path
+                    d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"
+                ></path>
+            </svg>
+            <svg
+                class="w-4 h-4 text-green-400 check-icon hidden"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+            >
+                <path d="M20 6 9 17l-5-5"></path>
+            </svg>
+        </button>
+    </div>
+</div>
+
+<script>
+    document.querySelectorAll(".copy-button").forEach((button) => {
+        button.addEventListener("click", async () => {
+            const text = button.getAttribute("data-copy");
+            if (text) {
+                await navigator.clipboard.writeText(text);
+                const copyIcon = button.querySelector(".copy-icon");
+                const checkIcon = button.querySelector(".check-icon");
+                if (copyIcon && checkIcon) {
+                    copyIcon.classList.add("hidden");
+                    checkIcon.classList.remove("hidden");
+                    setTimeout(() => {
+                        copyIcon.classList.remove("hidden");
+                        checkIcon.classList.add("hidden");
+                    }, 2000);
+                }
+            }
+        });
+    });
+</script>
