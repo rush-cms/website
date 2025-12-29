@@ -5,7 +5,7 @@ if (typeof window !== "undefined") {
     const hasDetected = localStorage.getItem("rush_cms_lang_detected");
 
     if (!hasDetected) {
-        const browserLang = navigator.language || navigator.userLanguage;
+        const browserLang = navigator.language;
         const currentPath = window.location.pathname;
 
         // Se a preferência for inglês e não estivermos numa rota /en, redireciona

@@ -80,7 +80,7 @@ const getProductTranslation = (slug: string) => {
                             >
                                 {
                                     Object.entries(ecosystemProducts).map(
-                                        ([key, category], index) => {
+                                        ([key, category]) => {
                                             const catTrans =
                                                 getCategoryTranslation(key);
                                             return (
